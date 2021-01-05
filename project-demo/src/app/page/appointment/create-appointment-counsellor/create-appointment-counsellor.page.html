@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create Appointment For P1 & P2 Student</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <form [formGroup]="appointmentCounForm" (ngSubmit)="CreateAppointment(appointmentCounForm)">
+
+    <ion-item>
+      <ion-label position="floating">Student Name <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select value="student" multiple="false" [(ngModel)]="selectedVal" (ionChange)="OnChange($event)" formControlName="studentname">
+        <ion-select-option *ngFor="let item of studentList" [value]="item.email">{{ item.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-datetime displayFormat="DD MMM YY" placeholder="Select Date" [(ngModel)]="SelectDate" (ionChange)="dateChanged($event)" formControlName="date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Time</ion-label>
+      <ion-select value="time" multiple="false" placeholder="Select Time" [(ngModel)]="SelectTime" (ionChange)="timeChanged($event)"  formControlName="time">
+        <ion-select-option value="8.00 AM">8.00 AM</ion-select-option>
+        <ion-select-option value="9.00 AM">9.00 AM</ion-select-option>
+        <ion-select-option value="10.00 AM">10.00 AM</ion-select-option>
+        <ion-select-option value="11.00 AM">11.00 AM</ion-select-option>
+        <ion-select-option value="2.00 PM">2.00 PM</ion-select-option>
+        <ion-select-option value="3.00 PM">3.00 PM</ion-select-option>
+        <ion-select-option value="4.00 PM">4.00 PM</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+    <ion-button block color="primary" type="submit" [disabled]="appointmentCounForm.invalid">
+      Submit
+    </ion-button>
+  </form>
+</ion-content>

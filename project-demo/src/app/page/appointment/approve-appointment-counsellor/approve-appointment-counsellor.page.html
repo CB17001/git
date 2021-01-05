@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Approve Appointment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="goBack()" expand="block" fill="clear" shape="round">
+    BACK
+  </ion-button>
+  <div class="panel">
+    <ion-row class="header-row">
+      <ion-col size="4">
+        Email
+      </ion-col>
+  
+      <ion-col size="3">
+        Date
+      </ion-col>
+  
+      <ion-col size="2">
+        Time
+      </ion-col>
+
+      <ion-col size="3">
+        Action
+      </ion-col>
+    </ion-row>
+  
+    <ion-row *ngFor="let row of coun_not_approve_appList" class="data-row">
+      <ion-col size="4">
+        <p style="font-size:90%;">{{row.Email}}</p>
+      </ion-col>
+
+      <ion-col size="3">
+        <p style="font-size:90%;">{{row.Date | date:'fullDate'}}</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p style="font-size:90%;">{{row.Time}}</p>
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-button (click)="showConfirm(row)" expand="block" fill="clear" shape="round">
+          <p style="font-size:85%;">APPROVE</p>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="login-menu" slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <img src="assets/icon/login.jpg" alt="login-logo">
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input required [(ngModel)]="user.email" formControlName="Email" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input required [(ngModel)]="user.password" formControlName="Password" type="password"></ion-input>
+        </ion-item>
+
+        <ion-list>
+          <ion-list>
+            <ion-radio-group allow-empty-selection="false" name="user-role" (ionChange)="radioGroupChange($event)" formControlName="Role" [(ngModel)]="user.role">
+              <ion-list-header>
+                <ion-label>Role:</ion-label>
+              </ion-list-header>
+    
+              <ion-item *ngFor="let item of radio_list" (ionSelect)="radioSelect($event)">
+                <ion-label>{{item.role}}</ion-label>
+                <ion-radio slot="start" name="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></ion-radio>
+              </ion-item>
+    
+            </ion-radio-group>
+          </ion-list>
+        </ion-list>
+
+        <ion-button block expand="block" color="primary" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

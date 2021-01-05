@@ -1,0 +1,199 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="login-menu" slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <button class="accordion">Register as Student</button>
+  <div class="panel">
+    <h2>Student Form</h2>
+    <form [formGroup]="studentForm" (ngSubmit)="CreateStudentRecord()">
+
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input [(ngModel)]="student.name" formControlName="Name"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Matric ID</ion-label>
+        <ion-input [(ngModel)]="student.matric" formControlName="MatricID"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="user.email" formControlName="Email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Gender</ion-label>
+        <ion-select value="gender" multiple="false" [(ngModel)]="student.gender" (ionChange)="OnChange($event)" formControlName="Gender">
+          <ion-select-option *ngFor="let gender of genderList" [value]="gender.value">{{gender.gender}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Faculty</ion-label>
+        <ion-select value="faculty" multiple="false" [(ngModel)]="student.faculty" (ionChange)="OnChange($event)" formControlName="Faculty">
+          <ion-select-option *ngFor="let faculty of facultyList" [value]="faculty.value">{{faculty.code}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input type="tel" [(ngModel)]="student.phone" formControlName="PhoneNum"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="CreateStudentRecord()" [disabled]="studentForm.invalid">Register</ion-button>
+  
+    </form>
+  </div>
+
+  <button class="accordion">Register as Counsellor</button>
+  <div class="panel">
+    <h2>Counsellor Form</h2>
+    <form [formGroup]="counsellorForm" (ngSubmit)="CreateCounsellorRecord()">
+
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input [(ngModel)]="counsellor.name" formControlName="Name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="user.email" formControlName="Email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Gender</ion-label>
+        <ion-select value="gender" multiple="false" (ionChange)="OnChange($event)" formControlName="Gender">
+          <ion-select-option *ngFor="let gender of genderList" [value]="gender.value">{{gender.gender}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input type="tel" formControlName="PhoneNum"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Room</ion-label>
+        <ion-input formControlName="Room"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Security Key</ion-label>
+        <ion-input type="password" formControlName="Key"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="CreateCounsellorRecord()" [disabled]="counsellorForm.invalid">Register</ion-button>
+  
+    </form>
+  </div>
+
+  <button class="accordion">Register as Faculty</button>
+  <div class="panel">
+    <h2>Faculty Form</h2>
+
+    <form [formGroup]="facultyForm" (ngSubmit)="CreateFacultyRecord()" autocomplete="off">
+
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input [(ngModel)]="faculty.name" formControlName="Name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="user.email" autocomplete="off" formControlName="Email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Gender</ion-label>
+        <ion-select value="gender" multiple="false" (ionChange)="OnChange($event)" formControlName="Gender">
+          <ion-select-option *ngFor="let gender of genderList" [value]="gender.value">{{gender.gender}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input type="tel" formControlName="PhoneNum"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Faculty</ion-label>
+        <ion-select value="faculty" multiple="false" [(ngModel)]="faculty.faculty" (ionChange)="OnChange($event)" formControlName="Faculty">
+          <ion-select-option *ngFor="let faculty of facultyList" [value]="faculty.value">{{faculty.code}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Security Key</ion-label>
+        <ion-input type="password" formControlName="Key"></ion-input>
+      </ion-item>
+
+      <ion-button block color="primary" type="submit" [disabled]="facultyForm.invalid">
+        Login
+      </ion-button>
+    </form>
+  </div>
+  
+  <form [formGroup]="testForm" (ngSubmit)="CreateRecord()">
+
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="user.name" formControlName="Name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="user.email" formControlName="Email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-list>
+        <ion-radio-group allow-empty-selection="false" name="user-role" (ionChange)="radioGroupChange($event)" formControlName="Role" [(ngModel)]="user.role">
+          <ion-list-header>
+            <ion-label>Register as:</ion-label>
+          </ion-list-header>
+
+          <ion-item *ngFor="let item of radio_list" (ionSelect)="radioSelect($event)">
+            <ion-label>{{item.role}}</ion-label>
+            <ion-radio slot="start" name="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></ion-radio>
+          </ion-item>
+
+        </ion-radio-group>
+      </ion-list>
+    </ion-list>
+
+    
+
+    <ion-button expand="block" (click)="CreateRecord()" [disabled]="studentForm.invalid">Register</ion-button>
+
+  </form>
+</ion-content>
+

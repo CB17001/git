@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Student Appointment</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <form [formGroup]="appointStudForm" (ngSubmit)="CreateAppointment(appointStudForm)">
+
+    <ion-item>
+      <ion-label position="floating">Counsellor Name</ion-label>
+      <ion-select value="counsellor" multiple="false" [(ngModel)]="selectedVal" (ionChange)="OnChange($event)" formControlName="counsellorname">
+        <ion-select-option *ngFor="let item of counsellorList" [value]="item.email">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngFor="let student of studentList">
+      <ion-label >Faculty:</ion-label>
+      <ion-input disabled type="text" [(ngModel)]="student.Faculty" formControlName="faculty"></ion-input>
+    </ion-item>
+
+    <h6>**Date must be 2 days or more from today</h6>
+
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-datetime displayFormat="DD MMM YY" placeholder="Select Date" [(ngModel)]="SelectDate" (ionChange)="dateChanged($event)" formControlName="date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Time</ion-label>
+      <ion-select value="time" multiple="false" placeholder="Select Time" [(ngModel)]="SelectTime" (ionChange)="timeChanged($event)"  formControlName="time">
+        <ion-select-option value="8.00 AM">8.00 AM</ion-select-option>
+        <ion-select-option value="9.00 AM">9.00 AM</ion-select-option>
+        <ion-select-option value="10.00 AM">10.00 AM</ion-select-option>
+        <ion-select-option value="11.00 AM">11.00 AM</ion-select-option>
+        <ion-select-option value="2.00 PM">2.00 PM</ion-select-option>
+        <ion-select-option value="3.00 PM">3.00 PM</ion-select-option>
+        <ion-select-option value="4.00 PM">4.00 PM</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" (click)="CreateAppointment()" [disabled]="appointStudForm.invalid">Submit</ion-button>
+
+  </form>
+
+  <ion-row class="header-row">
+    <ion-col size="4">
+      Email
+    </ion-col>
+
+    <ion-col size="2">
+      Counsellor Name
+    </ion-col>
+
+    <ion-col size="4">
+      Date
+    </ion-col>
+
+    <ion-col size="2">
+      Time
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let row of appointmentList" class="data-row">
+    <ion-col size="4">
+      {{row.Email}}
+    </ion-col>
+
+    <ion-col size="2">
+      {{row.counName}}
+    </ion-col>
+
+    <ion-col size="4">
+      {{row.Date}}
+    </ion-col>
+
+    <ion-col size="2">
+      {{row.Time}}
+    </ion-col>
+  </ion-row>
+</ion-content>

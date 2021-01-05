@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Appointment</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button align="left" (click)="ApproveAppointment()">Approve Appointment</ion-button>
+  <ion-button align="center" (click)="CreateAppointment()">Create Appointment (P1&P2 Student)</ion-button>
+  <br>
+  <button class="accordion">Approved Appointment</button>
+  <div class="panel">
+    <ion-row class="header-row">
+      <ion-col size="3">
+        <p style="font-size:90%;">Email</p>
+      </ion-col>
+  
+      <ion-col size="3">
+        <p style="font-size:90%;">Counsellor Name</p>
+      </ion-col>
+  
+      <ion-col size="3">
+        <p style="font-size:90%;">Date</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p style="font-size:90%;">Time</p>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row *ngFor="let row of coun_approve_appList" class="data-row">
+      <ion-col size="3">
+        <p style="font-size:90%;">{{row.Email}}</p>
+      </ion-col>
+  
+      <ion-col size="3">
+        <p style="font-size:90%;">{{row.counName}}</p>
+      </ion-col>
+  
+      <ion-col size="3">
+        <p style="font-size:90%;">{{row.Date | date:'fullDate'}}</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p style="font-size:90%;">{{row.Time}}</p>
+      </ion-col>
+    </ion-row>
+  </div><br>
+
+  <br><button class="accordion">Not Approved Yet</button>
+  <div class="panel">
+    <ion-row class="header-row">
+      <ion-col size="3">
+        Email
+      </ion-col>
+  
+      <ion-col size="2">
+        Counsellor Name
+      </ion-col>
+  
+      <ion-col size="4">
+        Date
+      </ion-col>
+  
+      <ion-col size="2">
+        Time
+      </ion-col>
+    </ion-row>
+  
+    <ion-row *ngFor="let row of coun_not_approve_appList" class="data-row">
+      <ion-col size="4">
+        {{row.Email}}
+      </ion-col>
+  
+      <ion-col size="2">
+        {{row.counName}}
+      </ion-col>
+  
+      <ion-col size="3">
+        {{row.Date | date:'fullDate'}}
+      </ion-col>
+  
+      <ion-col size="2">
+        {{row.Time}}
+      </ion-col>
+    </ion-row>
+  </div><br>
+
+  <br><button class="accordion">Attended Appointment</button>
+  <div class="panel">
+    <ion-row class="header-row">
+      <ion-col size="4">
+        Email
+      </ion-col>
+  
+      <ion-col size="2">
+        Counsellor Name
+      </ion-col>
+  
+      <ion-col size="4">
+        Date
+      </ion-col>
+  
+      <ion-col size="2">
+        Time
+      </ion-col>
+    </ion-row>
+  
+    <ion-row *ngFor="let row of coun_attend_appList" class="data-row">
+      <ion-col size="4">
+        {{row.Email}}
+      </ion-col>
+  
+      <ion-col size="2">
+        {{row.counName}}
+      </ion-col>
+  
+      <ion-col size="4">
+        {{row.Date | date:'fullDate'}}
+      </ion-col>
+  
+      <ion-col size="2">
+        {{row.Time}}
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

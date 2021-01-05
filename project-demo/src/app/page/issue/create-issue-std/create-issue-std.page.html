@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create Issue</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <form [formGroup]="issueStudForm" (ngSubmit)="CreateIssue(issueStudForm)">
+
+    <ion-item>
+      <ion-label position="floating">Counsellor Name</ion-label>
+      <ion-select value="counsellor" multiple="false" [(ngModel)]="selectedVal" (ionChange)="OnChange($event)" formControlName="counsellorname">
+        <ion-select-option *ngFor="let item of counsellorList" [value]="item.email">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating"  >Message</ion-label>
+      <ion-textarea [(ngModel)]="message" formControlName="message"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" (click)="CreateIssue()" >Submit</ion-button>
+
+  </form>
+</ion-content>

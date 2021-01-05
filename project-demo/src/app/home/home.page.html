@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="user-menu" slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card *ngIf="data">
+    <ion-card-header>
+      <ion-card-title>
+        Hello
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{ user.email }}
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <img src="https://p7.hiclipart.com/preview/518/320/1007/computer-icons-mobile-app-development-android-my-account-icon.jpg" width="150" height="100" 
+            (click)="goToAccount()">
+            <p align="center">Account</p>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="https://www.nicepng.com/png/detail/360-3605155_img-appointment-icon.png" width="150" height="100" (click)="goToAppointment()">
+            <p align="center">Appointment</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card align="center">
+            <img src="https://cdn.imgbin.com/8/8/4/imgbin-computer-icons-message-email-email-2UqxLbGsRrTcdiqpSAYzD6aGc.jpg" width="150" height="100" (click)="goToIssue()">
+            <p align="center">Issue</p>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card align="center">
+            <img src="https://www.waynesville.k12.mo.us/cms/lib/MO01910216/Centricity/Domain/1674/attendance.png" width="150" height="100" (click)="goToAttendance()">
+            <p align="center">Attendance</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+      </ion-item><br>
+
+      <ion-button expand="block" (click)="SignOut()">Log Out</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

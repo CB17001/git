@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Attendance</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="panel">
+    <div *ngFor="let row of coun_attendance_appList">
+      <p> {{coun_attendance_appList.length}} Attendance Need To Be Checked</p>
+    </div>
+    
+    <ion-row class="header-row" >
+      <ion-col size="3">
+        <p style="font-size:80%;">Student Name</p>
+      </ion-col>
+
+      <ion-col size="3">
+        <p style="font-size:80%;">Phone Number</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p style="font-size:80%;">Date</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p style="font-size:80%;">Time</p>        
+      </ion-col>
+
+      <ion-col size="2">
+        <p style="font-size:80%;">Action</p>        
+      </ion-col>
+    </ion-row>
+
+    <div *ngFor="let row of coun_attendance_appList">
+      <span *ngIf="!row.isEdit; else elseBlock">
+        
+        <ion-row class="data-row" >
+          <ion-col size="3">
+            <p style="font-size:80%;">{{row.Studentemail}}</p>
+          </ion-col>
+
+          <ion-col size="3">
+            <p style="font-size:80%;">0104636330</p>
+          </ion-col>
+
+          <ion-col size="2">
+            <p style="font-size:75%;">{{row.Date | date:'fullDate'}}</p>
+          </ion-col>
+      
+          <ion-col size="2">
+            <p style="font-size:80%;">{{row.Time}}</p>
+          </ion-col>
+
+          <ion-col size="2">
+            <ion-button (click)="showConfirm(row)" expand="block" fill="clear" shape="round">
+              <p style="font-size:80%;">ATTEND</p>
+            </ion-button>
+          </ion-col> 
+
+          
+        </ion-row>
+        
+      </span>
+    
+      <ng-template #elseBlock>
+        <ion-card-header>
+          <ion-card-title>Attendance Detail</ion-card-title>
+          <ion-item>
+            <ion-label><strong>Student Name</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewName"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label><strong>Student Phone Number</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewCounPhone"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><strong>Date</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewDate"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label><strong>Time</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewTime"></ion-input>
+          </ion-item>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button fill="solid" color="medium" size="small" (click)="attendButton(row)">
+                  Attend
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="Back(row)">
+                  Back
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        </ion-card-content>
+      </ng-template>
+      
+    </div>  
+    
+  </div>
+</ion-content>

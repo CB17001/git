@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Report</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="panel">
+
+    <ion-button expand="block" (click)="CheckFaculty()">Check By Faculty</ion-button>
+
+    <br>
+
+    <form [formGroup]="checkForm" (ngSubmit)="CheckRecord()">
+
+      <ion-item>
+        <ion-label position="floating">Select Month</ion-label>
+        <ion-select value="month" multiple="false" (ionChange)="OnChange($event)" formControlName="month">
+          <ion-select-option *ngFor="let month of monthList" [value]="month.value">{{month.name}}</ion-select-option>
+        </ion-select>
+  
+        <ion-label position="floating">Select Year</ion-label>
+        <ion-select value="year" multiple="false" (ionChange)="OnChange($event)" formControlName="year">
+          <ion-select-option *ngFor="let year of yearList" [value]="year.value">{{year.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button expand="block" (click)="CheckRecord()" [disabled]="checkForm.invalid">Check</ion-button>
+    </form>
+    
+    <div class="panel">
+
+        <h2>Appointment</h2>
+
+        <div *ngFor="let row of coun_attend_appList"></div>
+        <ion-row>
+          <ion-col size="4">Completed</ion-col>
+
+          <ion-col size="4">{{coun_attend_appList.length}}</ion-col>
+        </ion-row>
+
+        <div *ngFor="let row of coun_approve_appList"></div>
+        <ion-row>
+          <ion-col size="4">Approved</ion-col>
+
+          <ion-col size="4">{{coun_approve_appList.length}}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">Incompleted</ion-col>
+
+          <ion-col size="4">{{coun_approve_appList.length}}</ion-col>
+        </ion-row>
+
+        <br>
+        
+        <h2>Issue</h2>
+        <div ></div>
+        <ion-row>
+          <ion-col size="4">Completed</ion-col>
+
+          <ion-col size="4"></ion-col>
+        </ion-row>
+
+        <div ></div>
+        <ion-row>
+          <ion-col size="4">Approved</ion-col>
+
+          <ion-col size="4"></ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">Incompleted</ion-col>
+
+          <ion-col size="4"></ion-col>
+        </ion-row>
+
+        <h2>Faculty</h2>
+        <div ></div>
+        <ion-row>
+          <ion-col size="3">Faculty</ion-col>
+
+          <ion-col size="3">Attended</ion-col>
+          <ion-col size="3">Absent</ion-col>
+          <ion-col size="3">Absent</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="3">FKOM</ion-col>
+
+          <ion-col size="3">{{coun_attend_appList.length}}</ion-col>
+          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
+          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
+        </ion-row>
+
+    </div>
+
+    
+  </div>
+</ion-content>
