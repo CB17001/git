@@ -106,15 +106,15 @@ export class AppComponent {
       },
       {
         title: 'Account',
-        url: "/counsellor-account"
+        url: "/faculty-account"
       },
       {
         title: 'Student Info',
-        url: "/view-attendance-coun"
+        url: "/student-info"
       },
       {
         title: 'Report',
-        url: "/view-report-coun"
+        url: "/student-info"
       },
     ]
   }

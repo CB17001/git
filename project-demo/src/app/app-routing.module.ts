@@ -103,6 +103,14 @@ const routes: Routes = [
     path: 'faculty-home',
     loadChildren: () => import('./mainpage/faculty-home/faculty-home.module').then( m => m.FacultyHomePageModule)
   },
+  {
+    path: 'faculty-account',
+    loadChildren: () => import('./page/account/faculty-account/faculty-account.module').then( m => m.FacultyAccountPageModule)
+  },
+  {
+    path: 'student-info',
+    loadChildren: () => import('./page/student-info/student-info.module').then( m => m.StudentInfoPageModule)
+  },
 ];
 
 @NgModule({

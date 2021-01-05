@@ -70,6 +70,27 @@ export class FirebaseService {
     //this.firestore.doc(this.collectionName + '/' + recordID).update(record);
   }
 
+  //Faculty Account
+  read_faculty_account(email) {
+    return this.firestore.collection("Database")
+    .doc("user")
+    .collection("User")
+    .doc("faculty")
+    .collection("Faculty", 
+    ref=> ref
+    .where("email", "==", email)
+    ).snapshotChanges();
+  }
+
+  update_faculty(recordID, record) {
+    return this.firestore.collection("Database")
+    .doc("user")
+    .collection("User")
+    .doc("faculty")
+    .collection("Faculty")
+    .doc(recordID).update(record);
+  }
+
 
   read_approve_app(email, approve, attend) {
     return this.firestore.collection("Database")

@@ -26,6 +26,18 @@ export class FacultyHomePage implements OnInit {
   ngOnInit() {
   }
 
+  goToAccount() {
+    this.router.navigate(['/faculty-account'])
+  }
+
+  goToStudentInfo() {
+    this.router.navigate(['/student-info'])
+  }
+
+  goToReport() {
+    this.router.navigate(['/student-info'])
+  }
+
   ionViewWillEnter() {
     this.menu.enable(true, 'faculty-menu');
   }
