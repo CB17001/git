@@ -10,37 +10,122 @@
 <ion-content>
 
 
-  <ion-button align="left" (click)="CreateIssue()">New Issue</ion-button>
+  <ion-button align="left" (click)="CreateIssue()">New Issue</ion-button><br>
 
-  <ion-row class="header-row">
+  <button class="accordion">Replied Issue</button>
+  <div class="panel">
+    <ion-row class="header-row">
+      <ion-col size="2">
+        Counsellor Name
+      </ion-col>
+  
+      <ion-col size="3">
+         Date
+      </ion-col>
+  
+      <ion-col size="4">
+        Message
+      </ion-col>
+
+      <ion-col size="2">
+        Action
+      </ion-col>
+    </ion-row>
+
+    <div *ngFor="let row of checked_issueList">
+      <span *ngIf="!row.isEdit; else elseBlock">
+        
+        <ion-row class="data-row" >
+          <ion-col size="2">
+            {{row.counName}}
+          </ion-col>
+      
+          <ion-col size="3">
+            {{row.Date | date:'fullDate'}}
+          </ion-col>
+      
+          <ion-col size="4">
+            {{row.Message}}
+          </ion-col>
     
-
-    <ion-col size="3">
-      Counsellor Name
-    </ion-col>
-
-    <ion-col size="4">
-      Date
-    </ion-col>
-
-    <ion-col size="5">
-      Message
-    </ion-col>
-  </ion-row>
-
-  <ion-row *ngFor="let row of issueList" class="data-row">
+          <ion-col size="2">
+            <ion-button (click)="showConfirm(row)" expand="block" fill="clear" size="small">
+              <p style="font-size:80%;">CHECK</p>
+            </ion-button>
+          </ion-col> 
+        </ion-row>
+      </span>
     
+      <ng-template #elseBlock>
+        <ion-card-header>
+          <ion-card-title>Issue Detail</ion-card-title>
+          <ion-item>
+            <ion-label><strong>Counsellor Name</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewName"></ion-input>
+          </ion-item>
 
-    <ion-col size="3">
-      {{row.counName}}
-    </ion-col>
+          <ion-item>
+            <ion-label><strong>Date</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewDate"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label><strong>Time</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewMessage"></ion-input>
+          </ion-item>
 
-    <ion-col size="4">
-      {{row.Date | date:'fullDate'}}
-    </ion-col>
+          <ion-item>
+            <ion-label><strong>Reply</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewMessage"></ion-input>
+          </ion-item>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="Back(row)">
+                  Back
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ng-template>
+     
+    </div>  
+  </div><br>
+  
+  <button class="accordion">Not Replied Issue</button>
+  <div class="panel">
+    <ion-row class="header-row">
+      <ion-col size="3">
+        Counsellor Name
+      </ion-col>
+  
+      <ion-col size="4">
+        Date
+      </ion-col>
+  
+      <ion-col size="5">
+        Message
+      </ion-col>
+    </ion-row>
+  
+    <ion-row *ngFor="let row of unchecked_issueList" class="data-row">
+      <ion-col size="3">
+        {{row.counName}}
+      </ion-col>
+  
+      <ion-col size="4">
+        {{row.Date | date:'fullDate'}}
+      </ion-col>
+  
+      <ion-col size="5">
+        {{row.Message}}
+      </ion-col>
+    </ion-row>
+  </div><br>
 
-    <ion-col size="5">
-      {{row.Message}}
-    </ion-col>
-  </ion-row>
+
 </ion-content>

@@ -87,7 +87,7 @@ export class AppComponent {
       },
       {
         title: 'Issue',
-        //url: "/"
+        url: "/view-issue-counsellor"
       },
       {
         title: 'Attendance',

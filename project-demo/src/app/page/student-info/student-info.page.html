@@ -9,4 +9,45 @@
 
 <ion-content>
 
+  
+  <div class="panel">
+    <ion-row class="header-row">
+      <ion-col size="4">
+        <p style="font-size:90%;" class="ion-text-center">Name</p>
+      </ion-col>
+  
+      <ion-col size="3">
+        <p style="font-size:90%;" class="ion-text-center">Phone Number</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p style="font-size:90%;" class="ion-text-center">Status</p>
+      </ion-col>
+
+      <ion-col size="3">
+        <p style="font-size:90%;" class="ion-text-center">Action</p>
+      </ion-col>
+      
+    </ion-row>
+  
+    <ion-row *ngFor="let row of studentList" class="data-row">
+      <ion-col size="4">
+        <p style="font-size:90%;">{{row.Name}} ({{row.MatricID}})</p>
+      </ion-col>
+
+      <ion-col size="3">
+        <p style="font-size:90%;">{{row.PhoneNum}}</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p style="font-size:90%;">{{row.Status}}</p>
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-button (click)="showConfirm(row)" expand="block" fill="clear" shape="round">
+          <p style="font-size:85%;">CHECK</p>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

@@ -29,6 +29,8 @@ export class FirebaseService {
     this.firestore.doc(this.collectionName + '/' + record_id).delete();
   }
 
+  account(){}
+
   read_student(email) {
     return this.firestore.collection("Database")
     .doc("user")
@@ -91,6 +93,7 @@ export class FirebaseService {
     .doc(recordID).update(record);
   }
 
+  appointment(){}
 
   read_approve_app(email, approve, attend) {
     return this.firestore.collection("Database")
@@ -208,14 +211,55 @@ export class FirebaseService {
     ).snapshotChanges();
   }
 
-  read_issue(email) {
+  issue(){}
+
+  read_checked_issue(email,status) {
     return this.firestore.collection("Database")
     .doc("issue")
     .collection("Issue", 
     ref=> ref
     .where("studentemail", "==", email)
+    .where("issueStatus", "==", status)
     ).snapshotChanges();
   }
+
+  read_unchecked_issue(email,status) {
+    return this.firestore.collection("Database")
+    .doc("issue")
+    .collection("Issue", 
+    ref=> ref
+    .where("studentemail", "==", email)
+    .where("issueStatus", "==", status)
+    ).snapshotChanges();
+  }
+
+  read_unreplied_coun_issue(email,status) {
+    return this.firestore.collection("Database")
+    .doc("issue")
+    .collection("Issue", 
+    ref=> ref
+    .where("counsellorname", "==", email)
+    .where("issueStatus", "==", status)
+    ).snapshotChanges();
+  }
+
+  read_replied_coun_issue(email,status) {
+    return this.firestore.collection("Database")
+    .doc("issue")
+    .collection("Issue", 
+    ref=> ref
+    .where("counsellorname", "==", email)
+    .where("issueStatus", "==", status)
+    ).snapshotChanges();
+  }
+
+  reply_issue(recordID, record) {
+    return this.firestore.collection("Database")
+    .doc("issue")
+    .collection("Issue")
+    .doc(recordID).update(record);
+  }
+
 
   //
   // Attendance
@@ -255,6 +299,18 @@ export class FirebaseService {
     .doc("appointment")
     .collection("Appointment")
     .doc(recordID).update(record);
+  }
+
+  student_info(){}
+
+
+  read_faculty_student() {
+    return this.firestore.collection("Database")
+    .doc("user")
+    .collection("User")
+    .doc("student")
+    .collection("Student")
+    .snapshotChanges();
   }
 
   report(){}

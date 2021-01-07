@@ -35,7 +35,7 @@ export class CounsellorHomePage implements OnInit {
   }
 
   goToIssue() {
-    //this.router.navigate(['/view-issue-std'])
+    this.router.navigate(['/view-issue-counsellor'])
   }
 
   goToAttendance() {
