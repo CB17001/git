@@ -114,7 +114,7 @@ export class AppComponent {
       },
       {
         title: 'Report',
-        url: "/student-info"
+        url: "/view-report-fac"
       },
     ]
   }

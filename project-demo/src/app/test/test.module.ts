@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ViewReportFacPageRoutingModule } from './view-report-fac-routing.module';
+import { TestPageRoutingModule } from './test-routing.module';
 
-import { ViewReportFacPage } from './view-report-fac.page';
+import { TestPage } from './test.page';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     IonicModule,
-    ViewReportFacPageRoutingModule
+    TestPageRoutingModule
   ],
-  declarations: [ViewReportFacPage]
+  declarations: [TestPage]
 })
-export class ViewReportFacPageModule {}
+export class TestPageModule {}

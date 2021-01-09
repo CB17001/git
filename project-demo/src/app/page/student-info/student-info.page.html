@@ -9,6 +9,16 @@
 
 <ion-content>
 
+  <form [formGroup]="checkForm" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label><strong>Faculty</strong></ion-label>
+      <ion-input *ngFor="let row of facultyInfo" [(ngModel)]="row.Faculty" formControlName="faculty" readonly></ion-input>
+    </ion-item>
+
+    <ion-button block color="primary" type="submit" [disabled]="checkForm.invalid">
+      Check
+    </ion-button>
+  </form>
   
   <div class="panel">
     <ion-row class="header-row">
@@ -29,25 +39,91 @@
       </ion-col>
       
     </ion-row>
-  
-    <ion-row *ngFor="let row of studentList" class="data-row">
-      <ion-col size="4">
-        <p style="font-size:90%;">{{row.Name}} ({{row.MatricID}})</p>
-      </ion-col>
 
-      <ion-col size="3">
-        <p style="font-size:90%;">{{row.PhoneNum}}</p>
-      </ion-col>
-  
-      <ion-col size="2">
-        <p style="font-size:90%;">{{row.Status}}</p>
-      </ion-col>
 
-      <ion-col size="3">
-        <ion-button (click)="showConfirm(row)" expand="block" fill="clear" shape="round">
-          <p style="font-size:85%;">CHECK</p>
-        </ion-button>
-      </ion-col>
-    </ion-row>
+    <div *ngFor="let row of studentList">
+      <span *ngIf="!row.isEdit; else elseBlock">
+        <ion-row class="data-row" >
+
+          <ion-col size="4">
+            <p style="font-size:90%;">{{row.Name}} ({{row.MatricID}})</p>
+          </ion-col>
+    
+          <ion-col size="3">
+            <p style="font-size:90%;">{{row.PhoneNum}}</p>
+          </ion-col>
+      
+          <ion-col size="2">
+            <p style="font-size:90%;">{{row.Status}}</p>
+          </ion-col>
+    
+          <ion-col size="3">
+            <ion-button (click)="showConfirm(row)" expand="block" fill="clear" shape="round">
+              <p style="font-size:85%;">CHECK</p>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </span>
+
+      <ng-template #elseBlock>
+        <ion-card-header>
+          <ion-card-title>Student Detail</ion-card-title>
+          <ion-item>
+            <ion-label><strong>Student Name</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewName" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label><strong>Email</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewEmail" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label><strong>Matric ID</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewMatricID" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label><strong>Gender</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewGender" readonly></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label><strong>Phone Number</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewPhoneNum" readonly></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label><strong>Status</strong></ion-label>
+            <ion-select [(ngModel)]="row.EditStatus" multiple="false"  (ionChange)="OnChange($event)" >
+              <ion-select-option *ngFor="let status of status" [value]="status.EditStatus">{{status.name}}</ion-select-option>
+            </ion-select>
+
+          </ion-item>
+
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="Back(row)">
+                  Back
+                </ion-button>
+              </ion-col>
+
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="UpdateRecord(row)">
+                  Update
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ng-template>
+    </div>
+
+    
+  
   </div>
 </ion-content>

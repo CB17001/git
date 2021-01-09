@@ -24,6 +24,11 @@
       <ion-textarea [(ngModel)]="message" formControlName="message"></ion-textarea>
     </ion-item>
 
+    <ion-item>
+      <ion-label><strong>Faculty</strong></ion-label>
+      <ion-input *ngFor="let row of studentInfo" [(ngModel)]="row.Faculty" formControlName="faculty" readonly></ion-input>
+    </ion-item>
+
     <ion-button expand="block" (click)="CreateIssue()" >Submit</ion-button>
 
   </form>

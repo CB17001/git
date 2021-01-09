@@ -53,7 +53,7 @@ export class ViewAttendanceCounPage implements OnInit {
     console.log(record.Time);
     record.isEdit = true;
     record.ViewName = record.Studentemail;
-    record.ViewCounPhone = "0104636330";
+    //record.ViewCounPhone = "0104636330";
     record.ViewDate = record.Date;
     record.ViewTime = record.Time;
   }
@@ -75,7 +75,10 @@ export class ViewAttendanceCounPage implements OnInit {
         {
           text: 'No',
           handler: () => {
-            console.log('Let me think');
+            let record = {};
+            record['attendanceStatus'] = 2;
+            this.firebaseService.update_coun_attendance(recordRow.id, record);
+            console.log(recordRow.id);
           }
         },
       ]

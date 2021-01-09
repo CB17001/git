@@ -1,9 +1,68 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>view-report-fac</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Report</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="panel">
 
+    <form [formGroup]="checkForm" (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-label><strong>Faculty</strong></ion-label>
+        <ion-input *ngFor="let row of facultyInfo" [(ngModel)]="row.Faculty" formControlName="faculty" readonly></ion-input>
+      </ion-item>
+  
+      <ion-button block color="primary" type="submit" [disabled]="checkForm.invalid">
+        Check
+      </ion-button>
+    </form>
+    
+    <div class="panel">
+
+      <h2>Appointment</h2>
+
+      <div *ngFor="let row of fac_attend_appList"></div>
+      <ion-row>
+        <ion-col size="4">Completed</ion-col>
+
+        <ion-col size="4">{{fac_attend_appList.length}}</ion-col>
+      </ion-row>
+
+      <div *ngFor="let row of fac_approve_appList"></div>
+      <ion-row>
+        <ion-col size="4">Approved</ion-col>
+
+        <ion-col size="4">{{fac_approve_appList.length}}</ion-col>
+      </ion-row>
+
+      <div *ngFor="let row of fac_approve_appList"></div>
+      <ion-row>
+        <ion-col size="4">Incompleted</ion-col>
+
+        <ion-col size="4">{{fac_reject_appList.length}}</ion-col>
+      </ion-row>
+
+      <h2>Issue</h2>
+
+      <div *ngFor="let row of fac_reply_issueList"></div>
+      <ion-row>
+        <ion-col size="4">Completed</ion-col>
+
+        <ion-col size="4">{{fac_reply_issueList.length}}</ion-col>
+      </ion-row>
+
+      <div *ngFor="let row of fac_reply_issueList"></div>
+      <ion-row>
+        <ion-col size="4">Incomplete</ion-col>
+
+        <ion-col size="4">{{fac_notreply_issueList.length}}</ion-col>
+      </ion-row>
+    </div>
+
+    
+  </div>
 </ion-content>

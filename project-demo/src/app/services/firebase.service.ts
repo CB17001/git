@@ -304,13 +304,25 @@ export class FirebaseService {
   student_info(){}
 
 
-  read_faculty_student() {
+  read_faculty_student(faculty) {
+    return this.firestore.collection("Database")
+    .doc("user")
+    .collection("User")
+    .doc("student")
+    .collection("Student", 
+    ref=> ref
+    .where("faculty", "==", faculty)
+    ).snapshotChanges();
+  }
+
+
+  update_status(recordID, record) {
     return this.firestore.collection("Database")
     .doc("user")
     .collection("User")
     .doc("student")
     .collection("Student")
-    .snapshotChanges();
+    .doc(recordID).update(record);
   }
 
   report(){}
@@ -413,6 +425,28 @@ export class FirebaseService {
     .where("faculty", "==", "FIM")
     ).snapshotChanges();
   }
+
+  read_fac_appointment_app(faculty, approve, attend) {
+    return this.firestore.collection("Database")
+    .doc("appointment")
+    .collection("Appointment", 
+    ref=> ref
+    .where("faculty", "==", faculty)
+    .where("approveStatus", "==", approve)
+    .where("attendanceStatus", "==", attend)
+    ).snapshotChanges();
+  }
+
+  read_fac_issue_app(faculty, status) {
+    return this.firestore.collection("Database")
+    .doc("issue")
+    .collection("Issue", 
+    ref=> ref
+    .where("faculty", "==", faculty)
+    .where("issueStatus", "==", status)
+    ).snapshotChanges();
+  }
+  
 
   formatDate(date: Date): string {
     const day = date.getDate();

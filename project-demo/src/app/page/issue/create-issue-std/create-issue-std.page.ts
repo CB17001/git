@@ -15,6 +15,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 export class CreateIssueStdPage implements OnInit {
 
   private counsellorList: Array<object>
+  studentInfo = [];
 
   issueStudForm: FormGroup;
 
@@ -22,6 +23,8 @@ export class CreateIssueStdPage implements OnInit {
 
   counsellorName: string;
   message: string;
+  faculty: string;
+  reply: string;
   issueStatus: number;
   currentdate = Date.now();
 
@@ -39,6 +42,7 @@ export class CreateIssueStdPage implements OnInit {
     this.issueStudForm = this.fb.group({
       counsellorname: ['', [Validators.required]],
       message: ['', [Validators.required]],
+      faculty: ['', [Validators.required]],
     });
 
     var user = await this.ngFireAuth.currentUser;
@@ -58,17 +62,33 @@ export class CreateIssueStdPage implements OnInit {
       console.log(this.counsellorList);
     });
 
+    this.firebaseService.read_student(this.studentemail).subscribe(data => {
+
+      this.studentInfo = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          Name: e.payload.doc.data()['name'],
+          Email: e.payload.doc.data()['email'],
+          Faculty: e.payload.doc.data()['faculty'],
+          Campus: e.payload.doc.data()['campus'],
+        };
+      })
+      console.log(this.studentInfo);
+      
+    });
+
   }
 
   async CreateIssue() {
 
     this.issueStatus = 0;
 
-    
     console.log(this.selectedVal);
     console.log(this.studentemail);
     console.log(this.message);
     console.log(this.issueStatus);
+    console.log(this.issueStudForm.value.faculty);
+    
 
     this.db.collection("Database")
                 .doc("issue")
@@ -78,7 +98,9 @@ export class CreateIssueStdPage implements OnInit {
       studentemail: this.studentemail,
       message: this.message,
       date: this.currentdate,
-      issueStatus: this.issueStatus
+      issueStatus: this.issueStatus,
+      faculty: this.issueStudForm.value.faculty,
+      reply: ""
     })
     
 

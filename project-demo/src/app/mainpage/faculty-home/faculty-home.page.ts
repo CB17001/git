@@ -35,10 +35,17 @@ export class FacultyHomePage implements OnInit {
   }
 
   goToReport() {
-    this.router.navigate(['/student-info'])
+    this.router.navigate(['/view-report-fac'])
   }
 
   ionViewWillEnter() {
     this.menu.enable(true, 'faculty-menu');
+  }
+
+  SignOut() {
+    return this.auth.signOut().then(() => {
+      console.log('logout success');
+      this.router.navigate(['login']);
+    })
   }
 }
