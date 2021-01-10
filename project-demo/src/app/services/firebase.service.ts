@@ -328,7 +328,7 @@ export class FirebaseService {
   report(){}
 
   //date
-  read_fcom_attend_app(email, approve, attend, month, year) {
+  read_faculty_appointment_app(email, faculty, approve, attend) {
     return this.firestore.collection("Database")
     .doc("appointment")
     .collection("Appointment", 
@@ -336,95 +336,19 @@ export class FirebaseService {
     .where("counsellorname", "==", email)
     .where("approveStatus", "==", approve)
     .where("attendanceStatus", "==", attend)
-    //.where("date", ">=", year+"-"+month+"01T00:00:00+08:00")
-    //.where("date", "<=", year+"-"+month+"31T00:00:00+08:00")
-    .where("faculty", "==", "FCOM")
+    .where("faculty", "==", faculty)
     ).snapshotChanges();
   }
 
-  read_fist_attend_app(email, approve, attend) {
+  read_faculty_report_app(faculty) {
     return this.firestore.collection("Database")
     .doc("appointment")
     .collection("Appointment", 
     ref=> ref
-    .where("counsellorname", "==", email)
-    .where("approveStatus", "==", approve)
-    .where("attendanceStatus", "==", attend)
-    .where("faculty", "==", "FIST")
+    .where("faculty", "==", faculty)
     ).snapshotChanges();
   }
-
-  read_fkksa_attend_app(email, approve, attend) {
-    return this.firestore.collection("Database")
-    .doc("appointment")
-    .collection("Appointment", 
-    ref=> ref
-    .where("counsellorname", "==", email)
-    .where("approveStatus", "==", approve)
-    .where("attendanceStatus", "==", attend)
-    .where("faculty", "==", "FKKSA")
-    ).snapshotChanges();
-  }
-
-  read_ftka_attend_app(email, approve, attend) {
-    return this.firestore.collection("Database")
-    .doc("appointment")
-    .collection("Appointment", 
-    ref=> ref
-    .where("counsellorname", "==", email)
-    .where("approveStatus", "==", approve)
-    .where("attendanceStatus", "==", attend)
-    .where("faculty", "==", "FTKA")
-    ).snapshotChanges();
-  }
-
-  read_ftkee_attend_app(email, approve, attend) {
-    return this.firestore.collection("Database")
-    .doc("appointment")
-    .collection("Appointment", 
-    ref=> ref
-    .where("counsellorname", "==", email)
-    .where("approveStatus", "==", approve)
-    .where("attendanceStatus", "==", attend)
-    .where("faculty", "==", "FTKEE")
-    ).snapshotChanges();
-  }
-
-  read_fkp_attend_app(email, approve, attend) {
-    return this.firestore.collection("Database")
-    .doc("appointment")
-    .collection("Appointment", 
-    ref=> ref
-    .where("counsellorname", "==", email)
-    .where("approveStatus", "==", approve)
-    .where("attendanceStatus", "==", attend)
-    .where("faculty", "==", "FKP")
-    ).snapshotChanges();
-  }
-
-  read_ftkma_attend_app(email, approve, attend) {
-    return this.firestore.collection("Database")
-    .doc("appointment")
-    .collection("Appointment", 
-    ref=> ref
-    .where("counsellorname", "==", email)
-    .where("approveStatus", "==", approve)
-    .where("attendanceStatus", "==", attend)
-    .where("faculty", "==", "FTKMA")
-    ).snapshotChanges();
-  }
-
-  read_fim_attend_app(email, approve, attend) {
-    return this.firestore.collection("Database")
-    .doc("appointment")
-    .collection("Appointment", 
-    ref=> ref
-    .where("counsellorname", "==", email)
-    .where("approveStatus", "==", approve)
-    .where("attendanceStatus", "==", attend)
-    .where("faculty", "==", "FIM")
-    ).snapshotChanges();
-  }
+  
 
   read_fac_appointment_app(faculty, approve, attend) {
     return this.firestore.collection("Database")

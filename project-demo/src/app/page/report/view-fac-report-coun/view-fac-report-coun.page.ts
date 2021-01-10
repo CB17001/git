@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, MenuController, ToastController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -19,71 +19,57 @@ export class ViewFacReportCounPage implements OnInit {
   year: string;
 
   coun_approve_appList = [];
-  coun_not_approve_appList = [];
-  fcom_attend_appList = [];
+  faculty_appList = [];
+  faculty_attend_appList = [];
+  faculty_approve_appList = [];
+  faculty_unapprove_appList = [];
+  faculty_absent_appList = [];
 
   checkForm: FormGroup;
-  
-  monthList = [
-    {
-      name: 'January',
-      value: '1'
-    },
-    {
-      name: 'February',
-      value: '2'
-    },
-    {
-      name: 'March',
-      value: '3'
-    },
-    {
-      name: 'April',
-      value: '4'
-    },
-    {
-      name: 'May',
-      value: '5'
-    },
-    {
-      name: 'June',
-      value: '6'
-    },
-    {
-      name: 'July',
-      value: '7'
-    },
-    {
-      name: 'August',
-      value: '8'
-    },
-    {
-      name: 'September',
-      value: '9'
-    },
-    {
-      name: 'October',
-      value: '10'
-    },
-    {
-      name: 'November',
-      value: '11'
-    },
-    {
-      name: 'December',
-      value: '12'
-    },
-  ]
+ 
 
-  yearList = [
+  facultyList = [
+    
     {
-      name: '2020',
-      value: '2020'
+      name: 'Faculty of Industrial Sciences and Technology',
+      code: 'FIST',
+      value: 'FIST'
     },
     {
-      name: '2021',
-      value: '2021'
+      name: 'Faculty of Computing',
+      code: 'FCOM',
+      value: 'FCOM'
     },
+    {
+      name: 'Faculty of Chemical and Process Engineering Technology',
+      code: 'FKKSA',
+      value: 'FKKSA'
+    },
+    {
+      name: 'Faculty of Civil Engineering Technology',
+      code: 'FTKA',
+      value: 'FTKA'
+    },
+    {
+      name: 'Faculty of Electrical and Electronic Engineering Technology',
+      code: 'FTKEE',
+      value: 'FTKEE'
+    },
+    {
+      name: 'Faculty of Manufacturing and Mechatronic Engineering Technology',
+      code: 'FKP',
+      value: 'FKP'
+    },
+    {
+      name: 'Faculty of Mechanical and Automotive Engineering Technology',
+      code: 'FTKMA',
+      value: 'FTKMA'
+    },
+    {
+      name: 'Faculty of Industrial Management',
+      code: 'FIM',
+      value: 'FIM'
+    }
   ]
 
   OnChange(event) {
@@ -97,20 +83,83 @@ export class ViewFacReportCounPage implements OnInit {
     public router: Router,
     private menu: MenuController,
     public alertController: AlertController,
-    public fb: FormBuilder,) { }
+    public fb: FormBuilder,) { 
+
+      this.checkForm = new FormGroup({
+        Faculty: new FormControl(),
+      });
+    }
 
   async ngOnInit() {
-    this.checkForm = this.fb.group({
-      month: ['', [Validators.required]],
-      year: ['', [Validators.required]],
-    })
 
     var user = await this.ngFireAuth.currentUser;
     this.email = user.email;
   }
 
   CheckRecord(){
-    this.firebaseService.read_fcom_attend_app(this.email,1, 1, this.month, this.year).subscribe(data => {
+    console.log(this.checkForm.value.Faculty)
+
+    var faculty = this.checkForm.value.Faculty
+    
+    this.firebaseService.read_faculty_appointment_app(this.email, faculty, 1, 1).subscribe(data => {
+
+      this.faculty_attend_appList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          faculty: e.payload.doc.data()['faculty'],
+        };
+      })
+    });
+
+    this.firebaseService.read_faculty_appointment_app(this.email, faculty, 1, 0).subscribe(data => {
+
+      this.faculty_approve_appList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          faculty: e.payload.doc.data()['faculty'],
+        };
+      })
+    });
+
+    this.firebaseService.read_faculty_appointment_app(this.email, faculty, 0, 0).subscribe(data => {
+
+      this.faculty_unapprove_appList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          faculty: e.payload.doc.data()['faculty'],
+        };
+      })
+    });
+
+    this.firebaseService.read_faculty_appointment_app(this.email, faculty, 1, 2).subscribe(data => {
+
+      this.faculty_absent_appList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          faculty: e.payload.doc.data()['faculty'],
+        };
+      })
+    });
+
+    this.firebaseService.read_faculty_report_app(faculty).subscribe(data => {
+
+      this.faculty_appList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          faculty: e.payload.doc.data()['faculty'],
+        };
+      })
+    });
+
+    /*<div *ngFor="let row of faculty_approve_appList">
+            <ion-col size="3" >{{faculty_approve_appList.length}}</ion-col>
+          </div>
+          <div *ngFor="let row of faculty_unapprove_appList">
+            <ion-col size="3" >{{faculty_unapprove_appList.length}}</ion-col>
+          </div>*/
+
+    /*
+    this.firebaseService.read_faculty_attend_app(this.email,1, 2).subscribe(data => {
 
       this.fcom_attend_appList = data.map(e => {
         return {
@@ -119,16 +168,7 @@ export class ViewFacReportCounPage implements OnInit {
       })
     });
 
-    this.firebaseService.read_fcom_attend_app(this.email,1, 2, this.month, this.year).subscribe(data => {
-
-      this.fcom_attend_appList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-        };
-      })
-    });
-
-    this.firebaseService.read_fcom_attend_app(this.email,2, 0, this.month, this.year).subscribe(data => {
+    this.firebaseService.read_faculty_attend_app(this.email,2, 0).subscribe(data => {
 
       this.fcom_attend_appList = data.map(e => {
         return {
@@ -150,7 +190,7 @@ export class ViewFacReportCounPage implements OnInit {
         };
       })
       console.log(this.coun_approve_appList);
-    });
+    });*/
     
   }
 

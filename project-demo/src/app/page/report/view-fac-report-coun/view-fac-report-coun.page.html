@@ -13,14 +13,9 @@
     <form [formGroup]="checkForm" (ngSubmit)="CheckRecord()">
 
       <ion-item>
-        <ion-label position="floating">Select Month</ion-label>
-        <ion-select value="month" multiple="false" [(ngModel)]="month" (ionChange)="OnChange($event)" formControlName="month">
-          <ion-select-option *ngFor="let month of monthList" [value]="month.value">{{month.name}}</ion-select-option>
-        </ion-select>
-  
-        <ion-label position="floating">Select Year</ion-label>
-        <ion-select value="year" multiple="false" [(ngModel)]="year" (ionChange)="OnChange($event)" formControlName="year">
-          <ion-select-option *ngFor="let year of yearList" [value]="year.value">{{year.name}}</ion-select-option>
+        <ion-label position="floating">Faculty</ion-label>
+        <ion-select value="faculty" multiple="false" [(ngModel)]="faculty" (ionChange)="OnChange($event)" formControlName="Faculty">
+          <ion-select-option *ngFor="let faculty of facultyList" [value]="faculty.value">{{faculty.code}}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -29,83 +24,44 @@
     
     <div class="panel">
 
-        <h1>Appointment</h1>
-        <div *ngFor="let row of fcom_attend_appList"></div>
-        <div *ngFor="let row of coun_approve_appList"></div>
-        <h3>Faculty</h3>
-        <div ></div>
-        <ion-row>
-          <ion-col size="3">Faculty</ion-col>
+      <div *ngFor="let row of faculty_appList">
+        <h2>Appointment For {{row.faculty}}</h2>
+      </div>
+      
 
-          <ion-col size="3">Attended</ion-col>
-          <ion-col size="3">Absent</ion-col>
-          <ion-col size="3">Rejected</ion-col>
-        </ion-row>
+      <div *ngFor="let row of faculty_attend_appList"></div>
+      <ion-row>
+        <ion-col size="4">Attend</ion-col>
 
-        <ion-row>
-          <ion-col size="3">FKOM</ion-col>
+        <ion-col size="4">{{faculty_attend_appList.length}}</ion-col>
+      </ion-row>
 
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
+      <div *ngFor="let row of faculty_approve_appList"></div>
+      <ion-row>
+        <ion-col size="4">Approved</ion-col>
 
-        <ion-row>
-          <ion-col size="3">FIST</ion-col>
+        <ion-col size="4">{{faculty_approve_appList.length}}</ion-col>
+      </ion-row>
 
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
+      <div *ngFor="let row of faculty_unapprove_appList"></div>
+      <ion-row>
+        <ion-col size="4">Unapproved</ion-col>
 
-        <ion-row>
-          <ion-col size="3">FKKSA</ion-col>
+        <ion-col size="4">{{faculty_unapprove_appList.length}}</ion-col>
+      </ion-row>
 
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
+      <div *ngFor="let row of faculty_approve_appList"></div>
+      <ion-row>
+        <ion-col size="4">Absent</ion-col>
 
-        <ion-row>
-          <ion-col size="3">FTKA</ion-col>
+        <ion-col size="4">{{faculty_absent_appList.length}}</ion-col>
+      </ion-row>
 
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
+      
+      
 
-        <ion-row>
-          <ion-col size="3">FTKEE</ion-col>
 
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="3">FKP</ion-col>
-
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="3">FTKMA</ion-col>
-
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="3">FIM</ion-col>
-
-          <ion-col size="3">{{fcom_attend_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-          <ion-col size="3">{{coun_approve_appList.length}}</ion-col>
-        </ion-row>
-
+        
     </div>
 
     <ion-button (click)="goBack()" expand="block" fill="clear" shape="round">
