@@ -88,8 +88,8 @@ export class RegisterPage implements OnInit {
     },
     {
       name: 'Faculty of Computing',
-      code: 'FCOM',
-      value: 'FCOM'
+      code: 'FK',
+      value: 'FK'
     },
     {
       name: 'Faculty of Chemical and Process Engineering Technology',
@@ -256,7 +256,7 @@ export class RegisterPage implements OnInit {
 
     console.log(this.student.faculty);
     var lol = this.student.faculty
-    if(this.student.faculty == "FCOM" || this.student.faculty == "FKP" ||
+    if(this.student.faculty == "FK" || this.student.faculty == "FKP" ||
         this.student.faculty == "FTKMA" || this.student.faculty == "FTKEE") {
       this.student.campus = "Pekan"
     }
@@ -282,7 +282,7 @@ export class RegisterPage implements OnInit {
       campus: this.student.campus,
       gender: this.student.gender,
       phone: this.student.phone,
-      status: 'Normal',
+      status: 'Normal Student',
     });
     
     console.log("Student registered");
@@ -300,7 +300,7 @@ export class RegisterPage implements OnInit {
 
   async CreateCounsellorRecord() {
 
-    if(this.counsellorForm.value.Key == 5266) {
+    if(this.counsellorForm.value.Key == 4155) {
       //create user in Firebase Auth
       const user = await this.ngFireAuth.createUserWithEmailAndPassword(this.user.email, this.user.password);
       console.log(user);
@@ -316,7 +316,7 @@ export class RegisterPage implements OnInit {
           name: this.counsellorForm.value.Name,
           email: this.counsellorForm.value.Email,
           gender: this.counsellorForm.value.Gender,
-          phone: this.counsellorForm.value.Name,
+          phone: this.counsellorForm.value.Phone,
           room: this.counsellorForm.value.Room,
         });
 
@@ -347,7 +347,7 @@ export class RegisterPage implements OnInit {
       
       console.log(this.faculty.faculty);
       var lol = this.faculty.faculty
-      if(this.faculty.faculty == "FCOM" || this.faculty.faculty == "FKP" ||
+      if(this.faculty.faculty == "FK" || this.faculty.faculty == "FKP" ||
           this.faculty.faculty == "FTKMA" || this.faculty.faculty == "FTKEE") {
         this.faculty.campus = "Pekan"
       }
@@ -408,6 +408,6 @@ export class RegisterPage implements OnInit {
 
   ionViewWillEnter() {
     this.menu.enable(true, 'login-menu');
-    }
+  }
 
 }

@@ -98,6 +98,7 @@
 
       <ion-item>
         <ion-label position="floating">Security Key</ion-label>
+        <p style="font-size:90%;">Security Key can be obtain from other Counsellor</p>
         <ion-input type="password" formControlName="Key"></ion-input>
       </ion-item>
 
@@ -148,52 +149,13 @@
 
       <ion-item>
         <ion-label position="floating">Security Key</ion-label>
+        <p style="font-size:90%;">Security Key can be obtain from other Faculty Staff</p>
         <ion-input type="password" formControlName="Key"></ion-input>
       </ion-item>
 
-      <ion-button block color="primary" type="submit" [disabled]="facultyForm.invalid">
-        Login
-      </ion-button>
+      <ion-button expand="block" (click)="CreateFacultyRecord()" [disabled]="facultyForm.invalid">Register</ion-button>
     </form>
   </div>
   
-  <form [formGroup]="testForm" (ngSubmit)="CreateRecord()">
-
-    <ion-item>
-      <ion-label position="floating">Name</ion-label>
-      <ion-input [(ngModel)]="user.name" formControlName="Name"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input [(ngModel)]="user.email" formControlName="Email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
-    </ion-item>
-
-    <ion-list>
-      <ion-list>
-        <ion-radio-group allow-empty-selection="false" name="user-role" (ionChange)="radioGroupChange($event)" formControlName="Role" [(ngModel)]="user.role">
-          <ion-list-header>
-            <ion-label>Register as:</ion-label>
-          </ion-list-header>
-
-          <ion-item *ngFor="let item of radio_list" (ionSelect)="radioSelect($event)">
-            <ion-label>{{item.role}}</ion-label>
-            <ion-radio slot="start" name="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></ion-radio>
-          </ion-item>
-
-        </ion-radio-group>
-      </ion-list>
-    </ion-list>
-
-    
-
-    <ion-button expand="block" (click)="CreateRecord()" [disabled]="studentForm.invalid">Register</ion-button>
-
-  </form>
 </ion-content>
 

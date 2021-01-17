@@ -196,7 +196,7 @@ export class FirebaseService {
     .doc("student")
     .collection("Student", 
     ref=> ref
-    .where("status", "==", "Normal")
+    .where("status", "==", "P1/P2 Student")
     ).snapshotChanges();
   }
 

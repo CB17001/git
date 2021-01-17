@@ -39,8 +39,8 @@ export class StudentInfoPage implements OnInit {
     },
     {
       name: 'Faculty of Computing',
-      code: 'FCOM',
-      value: 'FCOM'
+      code: 'FK',
+      value: 'FK'
     },
     {
       name: 'Faculty of Chemical and Process Engineering Technology',

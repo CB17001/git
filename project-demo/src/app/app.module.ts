@@ -19,12 +19,13 @@ import { environment } from '../environments/environment';
 import { UserService } from './user.service';
 
 import { StudentAccountPage } from 'src/app/page/account/student-account/student-account.page';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(environment.firebase), 
-    AngularFireAuthModule, AngularFirestoreModule, HttpClientModule ],
+    AngularFireAuthModule, AngularFirestoreModule, HttpClientModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) ],
   providers: [
     StatusBar,
     SplashScreen,

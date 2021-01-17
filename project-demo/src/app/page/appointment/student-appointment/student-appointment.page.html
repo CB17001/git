@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button slot="start"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Student Appointment</ion-title>
+    <ion-title>Create Appointment</ion-title>
     
   </ion-toolbar>
 </ion-header>
@@ -47,40 +47,4 @@
     <ion-button expand="block" (click)="CreateAppointment()" [disabled]="appointStudForm.invalid">Submit</ion-button>
 
   </form>
-
-  <ion-row class="header-row">
-    <ion-col size="4">
-      Email
-    </ion-col>
-
-    <ion-col size="2">
-      Counsellor Name
-    </ion-col>
-
-    <ion-col size="4">
-      Date
-    </ion-col>
-
-    <ion-col size="2">
-      Time
-    </ion-col>
-  </ion-row>
-
-  <ion-row *ngFor="let row of appointmentList" class="data-row">
-    <ion-col size="4">
-      {{row.Email}}
-    </ion-col>
-
-    <ion-col size="2">
-      {{row.counName}}
-    </ion-col>
-
-    <ion-col size="4">
-      {{row.Date}}
-    </ion-col>
-
-    <ion-col size="2">
-      {{row.Time}}
-    </ion-col>
-  </ion-row>
 </ion-content>

@@ -19,6 +19,9 @@ export class ViewReportCounPage implements OnInit {
   coun_not_approve_appList = [];
   coun_attend_appList = [];
 
+  coun_replied_issueList = [];
+  coun_unreplied_issueList = [];
+
   checkForm: FormGroup;
 
   //Get value on ionSelect on IonRadio item
@@ -80,8 +83,6 @@ export class ViewReportCounPage implements OnInit {
   ]
 
   yearList = [
-    
-    
     {
       name: '2020',
       value: '2020'
@@ -144,6 +145,38 @@ export class ViewReportCounPage implements OnInit {
         };
       })
       console.log(this.coun_approve_appList);
+    });
+
+    this.firebaseService.read_replied_coun_issue(this.email,0).subscribe(data => {
+
+      this.coun_replied_issueList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          Email: e.payload.doc.data()['studentemail'],
+          counName: e.payload.doc.data()['counsellorname'],
+          Date: e.payload.doc.data()['date'],
+          Message: e.payload.doc.data()['message'],
+          Reply: e.payload.doc.data()['reply'],
+        };
+      })
+      console.log(this.coun_replied_issueList);
+    });
+
+    this.firebaseService.read_replied_coun_issue(this.email,0).subscribe(data => {
+
+      this.coun_unreplied_issueList = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          Email: e.payload.doc.data()['studentemail'],
+          counName: e.payload.doc.data()['counsellorname'],
+          Date: e.payload.doc.data()['date'],
+          Message: e.payload.doc.data()['message'],
+          Reply: e.payload.doc.data()['reply'],
+        };
+      })
+      console.log(this.coun_unreplied_issueList);
     });
     
   }

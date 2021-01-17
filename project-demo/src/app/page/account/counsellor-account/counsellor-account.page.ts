@@ -78,12 +78,12 @@ export class CounsellorAccountPage implements OnInit {
     let record = {};
     record['phone'] = recordRow.EditPhone;
     record['room'] = recordRow.EditRoom;
-    this.firebaseService.update_student(recordRow.id, record);
+    this.firebaseService.update_counsellor(recordRow.id, record);
     recordRow.isEdit = false;
   }
 
   ionViewWillEnter() {
     this.menu.enable(true, 'counsellor-menu');
-    }
+  }
 
 }

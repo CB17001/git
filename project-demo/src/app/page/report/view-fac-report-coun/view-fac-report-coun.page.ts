@@ -37,8 +37,8 @@ export class ViewFacReportCounPage implements OnInit {
     },
     {
       name: 'Faculty of Computing',
-      code: 'FCOM',
-      value: 'FCOM'
+      code: 'FK',
+      value: 'FK'
     },
     {
       name: 'Faculty of Chemical and Process Engineering Technology',
@@ -92,6 +92,25 @@ export class ViewFacReportCounPage implements OnInit {
 
   async ngOnInit() {
 
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+
     var user = await this.ngFireAuth.currentUser;
     this.email = user.email;
   }
@@ -106,6 +125,11 @@ export class ViewFacReportCounPage implements OnInit {
       this.faculty_attend_appList = data.map(e => {
         return {
           id: e.payload.doc.id,
+          isEdit: false,
+          Email: e.payload.doc.data()['studentemail'],
+          counName: e.payload.doc.data()['counsellorname'],
+          Date: e.payload.doc.data()['date'],
+          Time: e.payload.doc.data()['time'],
           faculty: e.payload.doc.data()['faculty'],
         };
       })
@@ -116,6 +140,11 @@ export class ViewFacReportCounPage implements OnInit {
       this.faculty_approve_appList = data.map(e => {
         return {
           id: e.payload.doc.id,
+          isEdit: false,
+          Email: e.payload.doc.data()['studentemail'],
+          counName: e.payload.doc.data()['counsellorname'],
+          Date: e.payload.doc.data()['date'],
+          Time: e.payload.doc.data()['time'],
           faculty: e.payload.doc.data()['faculty'],
         };
       })
@@ -126,6 +155,11 @@ export class ViewFacReportCounPage implements OnInit {
       this.faculty_unapprove_appList = data.map(e => {
         return {
           id: e.payload.doc.id,
+          isEdit: false,
+          Email: e.payload.doc.data()['studentemail'],
+          counName: e.payload.doc.data()['counsellorname'],
+          Date: e.payload.doc.data()['date'],
+          Time: e.payload.doc.data()['time'],
           faculty: e.payload.doc.data()['faculty'],
         };
       })
@@ -136,6 +170,11 @@ export class ViewFacReportCounPage implements OnInit {
       this.faculty_absent_appList = data.map(e => {
         return {
           id: e.payload.doc.id,
+          isEdit: false,
+          Email: e.payload.doc.data()['studentemail'],
+          counName: e.payload.doc.data()['counsellorname'],
+          Date: e.payload.doc.data()['date'],
+          Time: e.payload.doc.data()['time'],
           faculty: e.payload.doc.data()['faculty'],
         };
       })
@@ -150,48 +189,6 @@ export class ViewFacReportCounPage implements OnInit {
         };
       })
     });
-
-    /*<div *ngFor="let row of faculty_approve_appList">
-            <ion-col size="3" >{{faculty_approve_appList.length}}</ion-col>
-          </div>
-          <div *ngFor="let row of faculty_unapprove_appList">
-            <ion-col size="3" >{{faculty_unapprove_appList.length}}</ion-col>
-          </div>*/
-
-    /*
-    this.firebaseService.read_faculty_attend_app(this.email,1, 2).subscribe(data => {
-
-      this.fcom_attend_appList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-        };
-      })
-    });
-
-    this.firebaseService.read_faculty_attend_app(this.email,2, 0).subscribe(data => {
-
-      this.fcom_attend_appList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-        };
-      })
-    });
-
-    this.firebaseService.read_coun_approve_app(this.email,1,0).subscribe(data => {
-
-      this.coun_approve_appList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          Email: e.payload.doc.data()['studentemail'],
-          counName: e.payload.doc.data()['counsellorname'],
-          Date: e.payload.doc.data()['date'],
-          Time: e.payload.doc.data()['time'],
-        };
-      })
-      console.log(this.coun_approve_appList);
-    });*/
-    
   }
 
   goBack() {

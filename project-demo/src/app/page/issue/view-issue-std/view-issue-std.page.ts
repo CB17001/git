@@ -63,6 +63,7 @@ export class ViewIssueStdPage implements OnInit {
           counName: e.payload.doc.data()['counsellorname'],
           Date: e.payload.doc.data()['date'],
           Message: e.payload.doc.data()['message'],
+          Reply: e.payload.doc.data()['reply'],
         };
       })
       console.log(this.checked_issueList);
@@ -78,6 +79,7 @@ export class ViewIssueStdPage implements OnInit {
           counName: e.payload.doc.data()['counsellorname'],
           Date: e.payload.doc.data()['date'],
           Message: e.payload.doc.data()['message'],
+          Reply: e.payload.doc.data()['reply'],
         };
       })
       console.log(this.unchecked_issueList);
@@ -94,6 +96,7 @@ export class ViewIssueStdPage implements OnInit {
     record.ViewName = record.counName;
     record.ViewDate = record.Date;
     record.ViewMessage = record.Message;
+    record.ViewReply = record.Reply;
   }
 
   Back(recordRow) {
