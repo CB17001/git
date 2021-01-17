@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Faculty Staff Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="goBack()" expand="block" fill="clear" shape="round">
+    BACK
+  </ion-button>
+
+  <div class="panel">
+
+    <form [formGroup]="checkForm" (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-label><strong>Faculty</strong></ion-label>
+        <ion-input *ngFor="let row of staffList" [(ngModel)]="row.Faculty" formControlName="faculty" readonly></ion-input>
+      </ion-item>
+  
+      <ion-button block color="primary" type="submit" [disabled]="checkForm.invalid">
+        Check
+      </ion-button>
+    </form>
+
+    <ion-row class="header-row" >
+      <ion-col size="3">
+        <p>Name</p>
+      </ion-col>
+  
+      <ion-col size="2">
+        <p>Email</p>
+      </ion-col>
+  
+      <ion-col size="3">
+        <p>Phone Number</p>
+      </ion-col>
+
+      <ion-col size="2">
+        <p style="font-size:80%;">Action</p>        
+      </ion-col>
+    </ion-row>
+
+    <div *ngFor="let row of facultyList">
+      <span *ngIf="!row.isEdit; else elseBlock">
+        
+        <ion-row class="data-row" >
+          <ion-col size="3">
+            <p>{{row.Name}}</p>
+          </ion-col>
+
+          <ion-col size="2">
+            <p style="font-size:80%;">{{row.Email}}</p>
+          </ion-col>
+      
+          <ion-col size="3">
+            <p style="font-size:80%;">{{row.PhoneNum}}</p>
+          </ion-col>
+
+          <ion-col size="2">
+            <ion-button (click)="showConfirm(row)" expand="block" fill="clear" shape="round">
+              <p style="font-size:80%;">CHECK</p>
+            </ion-button>
+          </ion-col> 
+
+          
+        </ion-row>
+        
+      </span>
+    
+      <ng-template #elseBlock>
+        <ion-card-header>
+          <ion-card-title>Counsellor Detail</ion-card-title>
+          <ion-item>
+            <ion-label><strong>Name</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewName"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><strong>Email</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewEmail"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label><strong>Phone Number</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewPhoneNum"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><strong>Gender</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewGender"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><strong>Faculty</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewFaculty"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><strong>Campus</strong></ion-label>
+            <ion-input [(ngModel)]="row.ViewCampus"></ion-input>
+          </ion-item>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="Back(row)">
+                  Back
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        </ion-card-content>
+      </ng-template>
+      
+    </div>
+  </div>
+
+</ion-content>

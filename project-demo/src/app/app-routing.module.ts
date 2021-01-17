@@ -115,6 +115,22 @@ const routes: Routes = [
     path: 'test',
     loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
   },
+  {
+    path: 'coun-student-info',
+    loadChildren: () => import('./page/info/coun-student-info/coun-student-info.module').then( m => m.CounStudentInfoPageModule)
+  },
+  {
+    path: 'stud-faculty-info',
+    loadChildren: () => import('./page/info/stud-faculty-info/stud-faculty-info.module').then( m => m.StudFacultyInfoPageModule)
+  },
+  {
+    path: 'stud-counsellor-info',
+    loadChildren: () => import('./page/info/stud-counsellor-info/stud-counsellor-info.module').then( m => m.StudCounsellorInfoPageModule)
+  },
+  {
+    path: 'student-directory',
+    loadChildren: () => import('./page/directory/student-directory/student-directory.module').then( m => m.StudentDirectoryPageModule)
+  },
 ];
 
 @NgModule({

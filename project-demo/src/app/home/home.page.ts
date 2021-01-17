@@ -137,6 +137,10 @@ export class HomePage {
     this.router.navigate(['/view-attendance-std'])
   }
 
+  goToDirectory() {
+    this.router.navigate(['/student-directory'])
+  }
+
   SignOut() {
     return this.auth.signOut().then(() => {
       console.log('logout success');
@@ -146,7 +150,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.menu.enable(true, 'user-menu');
-    }
+  }
 
   _openSideNav() {
     this.menu.enable(true, 'menu-content')

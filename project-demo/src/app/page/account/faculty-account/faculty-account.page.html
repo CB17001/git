@@ -54,7 +54,7 @@
 
         <ion-item>
           <ion-label><strong>Phone</strong></ion-label>
-          <ion-input type="tel" [(ngModel)]="faculty.EditPhone"></ion-input>
+          <ion-input type="tel" [(ngModel)]="faculty.EditPhone" minlength="10" maxlength="11"></ion-input>
         </ion-item>
 
       </ion-card-content>

@@ -46,6 +46,10 @@ export class CounsellorHomePage implements OnInit {
     this.router.navigate(['/view-report-coun'])
   }
 
+  goToDirectory() {
+    this.router.navigate(['/coun-student-info'])
+  }
+
   ionViewWillEnter() {
     this.menu.enable(true, 'counsellor-menu');
   }

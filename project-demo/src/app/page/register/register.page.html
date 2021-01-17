@@ -46,12 +46,12 @@
 
       <ion-item>
         <ion-label position="floating">Phone Number</ion-label>
-        <ion-input type="tel" [(ngModel)]="student.phone" formControlName="PhoneNum"></ion-input>
+        <ion-input type="tel" [(ngModel)]="student.phone" formControlName="PhoneNum" minlength="10" maxlength="11"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
+        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password" minlength="6" maxlength="8"></ion-input>
       </ion-item>
 
       <ion-button expand="block" (click)="CreateStudentRecord()" [disabled]="studentForm.invalid">Register</ion-button>
@@ -83,7 +83,7 @@
 
       <ion-item>
         <ion-label position="floating">Phone Number</ion-label>
-        <ion-input type="tel" formControlName="PhoneNum"></ion-input>
+        <ion-input type="tel" formControlName="PhoneNum"  minlength="10" maxlength="11"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -93,7 +93,7 @@
 
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
+        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password" minlength="6" maxlength="8"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -132,7 +132,7 @@
 
       <ion-item>
         <ion-label position="floating">Phone Number</ion-label>
-        <ion-input type="tel" formControlName="PhoneNum"></ion-input>
+        <ion-input type="tel" formControlName="PhoneNum"  minlength="10" maxlength="11"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -144,7 +144,7 @@
 
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password"></ion-input>
+        <ion-input [(ngModel)]="user.password" type="password" formControlName="Password" minlength="6" maxlength="8"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -158,4 +158,3 @@
   </div>
   
 </ion-content>
-

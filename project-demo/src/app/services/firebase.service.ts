@@ -370,6 +370,19 @@ export class FirebaseService {
     .where("issueStatus", "==", status)
     ).snapshotChanges();
   }
+
+  directory(){}
+
+  read_faculty_staff(faculty) {
+    return this.firestore.collection("Database")
+    .doc("user")
+    .collection("User")
+    .doc("faculty")
+    .collection("Faculty", 
+    ref=> ref
+    .where("faculty", "==", faculty)
+    ).snapshotChanges();
+  }
   
 
   formatDate(date: Date): string {

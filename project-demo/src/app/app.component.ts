@@ -66,6 +66,10 @@ export class AppComponent {
         title: 'Issue',
         url: "/view-issue-std"
       },
+      {
+        title: 'Directory',
+        url: "/student-directory"
+      },
     ]
 
     this.counMenuList = [
@@ -92,6 +96,10 @@ export class AppComponent {
       {
         title: 'Report',
         url: "/view-report-coun"
+      },
+      {
+        title: 'Directory',
+        url: "/coun-student-info"
       },
     ]
 
