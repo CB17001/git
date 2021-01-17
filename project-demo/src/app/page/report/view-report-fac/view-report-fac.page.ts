@@ -18,7 +18,7 @@ export class ViewReportFacPage implements OnInit {
   checkForm: FormGroup;
   fac_attend_appList = [];
   fac_approve_appList = [];
-  fac_reject_appList = [];
+  fac_notapproved_appList = [];
   fac_reply_issueList = [];
   fac_notreply_issueList = [];
 
@@ -37,6 +37,25 @@ export class ViewReportFacPage implements OnInit {
     }
 
   async ngOnInit() {
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
 
     var user = await this.ngFireAuth.currentUser;
     this.name = user.email;
@@ -97,7 +116,7 @@ export class ViewReportFacPage implements OnInit {
 
     this.firebaseService.read_fac_appointment_app(faculty,0, 0).subscribe(data => {
 
-      this.fac_reject_appList = data.map(e => {
+      this.fac_notapproved_appList = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
@@ -107,7 +126,7 @@ export class ViewReportFacPage implements OnInit {
           Time: e.payload.doc.data()['time'],
         };
       })
-      console.log(this.fac_reject_appList);
+      console.log(this.fac_notapproved_appList);
     });
 
     this.firebaseService.read_fac_issue_app(faculty,1).subscribe(data => {
@@ -119,7 +138,8 @@ export class ViewReportFacPage implements OnInit {
           Email: e.payload.doc.data()['studentemail'],
           counName: e.payload.doc.data()['counsellorname'],
           Date: e.payload.doc.data()['date'],
-          Time: e.payload.doc.data()['time'],
+          Message: e.payload.doc.data()['message'],
+          Reply: e.payload.doc.data()['reply'],
         };
       })
       console.log(this.fac_reply_issueList);
@@ -134,7 +154,8 @@ export class ViewReportFacPage implements OnInit {
           Email: e.payload.doc.data()['studentemail'],
           counName: e.payload.doc.data()['counsellorname'],
           Date: e.payload.doc.data()['date'],
-          Time: e.payload.doc.data()['time'],
+          Message: e.payload.doc.data()['message'],
+          Reply: e.payload.doc.data()['reply'],
         };
       })
       console.log(this.fac_notreply_issueList);
@@ -143,6 +164,20 @@ export class ViewReportFacPage implements OnInit {
 
   ionViewWillEnter() {
     this.menu.enable(true, 'faculty-menu');
+  }
+
+  showConfirm(record) {
+
+    record.isEdit = true;
+    record.ViewName = record.Email;
+    record.ViewCoun = record.counName;
+    record.ViewDate = record.Date;
+    record.ViewMessage = record.Message;
+    record.EditReply = record.Reply;
+  }
+
+  Back(recordRow) {
+    recordRow.isEdit = false;
   }
 
 }

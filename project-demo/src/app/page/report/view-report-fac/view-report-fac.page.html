@@ -27,7 +27,7 @@
 
       <div *ngFor="let row of fac_attend_appList"></div>
       <ion-row>
-        <ion-col size="4">Completed</ion-col>
+        <ion-col size="4">Attended</ion-col>
 
         <ion-col size="4">{{fac_attend_appList.length}}</ion-col>
       </ion-row>
@@ -39,12 +39,131 @@
         <ion-col size="4">{{fac_approve_appList.length}}</ion-col>
       </ion-row>
 
-      <div *ngFor="let row of fac_approve_appList"></div>
+      <div *ngFor="let row of fac_notapproved_appList"></div>
       <ion-row>
-        <ion-col size="4">Incompleted</ion-col>
+        <ion-col size="4">Rejected</ion-col>
 
-        <ion-col size="4">{{fac_reject_appList.length}}</ion-col>
+        <ion-col size="4">{{fac_notapproved_appList.length}}</ion-col>
       </ion-row>
+      <br>
+
+      <button class="accordion">Approved Appointment</button>
+      <div class="panel">
+        <ion-row class="header-row">
+          <ion-col size="3">
+            <p style="font-size:90%;">Student Email</p>
+          </ion-col>
+      
+          <ion-col size="3">
+            <p style="font-size:90%;">Counsellor Name</p>
+          </ion-col>
+      
+          <ion-col size="3">
+            <p style="font-size:90%;">Date</p>
+          </ion-col>
+      
+          <ion-col size="2">
+            <p style="font-size:90%;">Time</p>
+          </ion-col>
+        </ion-row>
+      
+        <ion-row *ngFor="let row of fac_approve_appList" class="data-row">
+          <ion-col size="3">
+            <p style="font-size:90%;">{{row.Email}}</p>
+          </ion-col>
+      
+          <ion-col size="3">
+            <p style="font-size:90%;">{{row.counName}}</p>
+          </ion-col>
+      
+          <ion-col size="3">
+            <p style="font-size:90%;">{{row.Date | date:'fullDate'}}</p>
+          </ion-col>
+      
+          <ion-col size="2">
+            <p style="font-size:90%;">{{row.Time}}</p>
+          </ion-col>
+        </ion-row>
+      </div><br>
+
+      <br><button class="accordion">Not Approved Yet</button>
+      <div class="panel">
+        <ion-row class="header-row">
+          <ion-col size="3">
+            Student Email
+          </ion-col>
+      
+          <ion-col size="3">
+            Counsellor Name
+          </ion-col>
+      
+          <ion-col size="3">
+            Date
+          </ion-col>
+      
+          <ion-col size="2">
+            Time
+          </ion-col>
+        </ion-row>
+      
+        <ion-row *ngFor="let row of fac_notapproved_appList" class="data-row">
+          <ion-col size="3">
+            {{row.Email}}
+          </ion-col>
+      
+          <ion-col size="3">
+            {{row.counName}}
+          </ion-col>
+      
+          <ion-col size="3">
+            {{row.Date | date:'fullDate'}}
+          </ion-col>
+      
+          <ion-col size="2">
+            {{row.Time}}
+          </ion-col>
+        </ion-row>
+      </div><br>
+
+      <br><button class="accordion">Attended Appointment</button>
+      <div class="panel">
+        <ion-row class="header-row">
+          <ion-col size="3">
+            Student Email
+          </ion-col>
+      
+          <ion-col size="3">
+            Counsellor Name
+          </ion-col>
+      
+          <ion-col size="3">
+            Date
+          </ion-col>
+      
+          <ion-col size="2">
+            Time
+          </ion-col>
+        </ion-row>
+      
+        <ion-row *ngFor="let row of fac_attend_appList" class="data-row">
+          <ion-col size="3">
+            {{row.Email}}
+          </ion-col>
+      
+          <ion-col size="3">
+            {{row.counName}}
+          </ion-col>
+      
+          <ion-col size="3">
+            {{row.Date | date:'fullDate'}}
+          </ion-col>
+      
+          <ion-col size="2">
+            {{row.Time}}
+          </ion-col>
+        </ion-row>
+      </div>
+
 
       <h2>Issue</h2>
 
@@ -61,6 +180,201 @@
 
         <ion-col size="4">{{fac_notreply_issueList.length}}</ion-col>
       </ion-row>
+
+      <br>
+
+      <button class="accordion">Replied Issue</button>
+      <div class="panel">
+        <ion-row class="header-row">
+          <ion-col size="2">
+            Student Name
+          </ion-col>
+
+          <ion-col size="2">
+            Counsellor Name
+          </ion-col>
+      
+          <ion-col size="3">
+            Date
+          </ion-col>
+      
+          <ion-col size="3">
+            Message
+          </ion-col>
+
+          <ion-col size="2">
+            Action
+          </ion-col>
+        </ion-row>
+
+        <div *ngFor="let row of fac_reply_issueList">
+          <span *ngIf="!row.isEdit; else elseBlock">
+            
+            <ion-row class="data-row" >
+              <ion-col size="2">
+                {{row.Email}}
+              </ion-col>
+
+              <ion-col size="2">
+                {{row.counName}}
+              </ion-col>
+          
+              <ion-col size="3">
+                {{row.Date | date:'fullDate'}}
+              </ion-col>
+          
+              <ion-col size="3">
+                {{row.Message}}
+              </ion-col>
+        
+              <ion-col size="2">
+                <ion-button (click)="showConfirm(row)" expand="block" fill="clear" size="small">
+                  <p style="font-size:80%;">CHECK</p>
+                </ion-button>
+              </ion-col> 
+            </ion-row>
+          </span>
+        
+          <ng-template #elseBlock>
+            <ion-card-header>
+              <ion-card-title>Issue Detail</ion-card-title>
+              <ion-item>
+                <ion-label><strong>Student Name</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewName" readonly></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label><strong>Counsellor Name</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewCoun" readonly></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label><strong>Date</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewDate" readonly></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                <ion-label><strong>Message</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewMessage" readonly></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label><strong>Reply</strong></ion-label>
+                <ion-input [(ngModel)]="row.EditReply" readonly></ion-input>
+              </ion-item>
+            </ion-card-header>
+          
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-button fill="solid" color="success" size="small" (click)="Back(row)">
+                      Back
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ng-template>
+        
+        </div>  
+      </div><br>
+
+      <button class="accordion">Unreplied Issue</button>
+      <div class="panel">
+        <ion-row class="header-row">
+          <ion-col size="2">
+            Student Name
+          </ion-col>
+
+          <ion-col size="2">
+            Counsellor Name
+          </ion-col>
+      
+          <ion-col size="3">
+            Date
+          </ion-col>
+      
+          <ion-col size="3">
+            Message
+          </ion-col>
+
+          <ion-col size="2">
+            Action
+          </ion-col>
+        </ion-row>
+
+        <div *ngFor="let row of fac_notreply_issueList">
+          <span *ngIf="!row.isEdit; else elseBlock">
+            
+            <ion-row class="data-row" >
+              <ion-col size="2">
+                {{row.Email}}
+              </ion-col>
+
+              <ion-col size="2">
+                {{row.counName}}
+              </ion-col>
+          
+              <ion-col size="3">
+                {{row.Date | date:'fullDate'}}
+              </ion-col>
+          
+              <ion-col size="3">
+                {{row.Message}}
+              </ion-col>
+        
+              <ion-col size="2">
+                <ion-button (click)="showConfirm(row)" expand="block" fill="clear" size="small">
+                  <p style="font-size:80%;">CHECK</p>
+                </ion-button>
+              </ion-col> 
+            </ion-row>
+          </span>
+        
+          <ng-template #elseBlock>
+            <ion-card-header>
+              <ion-card-title>Issue Detail</ion-card-title>
+              <ion-item>
+                <ion-label><strong>Student Name</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewName" readonly></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label><strong>Counsellor Name</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewCoun" readonly></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label><strong>Date</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewDate" readonly></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                <ion-label><strong>Message</strong></ion-label>
+                <ion-input [(ngModel)]="row.ViewMessage" readonly></ion-input>
+              </ion-item>
+
+            </ion-card-header>
+          
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-button fill="solid" color="success" size="small" (click)="Back(row)">
+                      Back
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ng-template>
+        
+        </div>  
+      </div><br>
+      <br>
+      
+      
     </div>
 
     

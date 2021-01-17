@@ -57,6 +57,11 @@
         </ion-row>
 
         <br>
+        <ion-button (click)="gotoAppointment()" expand="block" fill="clear" shape="round">
+          Appointment Section
+        </ion-button>
+
+        <br>
         
         <h2>Issue</h2>
         <div *ngFor="let row of coun_replied_issueList"></div>
@@ -72,6 +77,11 @@
 
           <ion-col size="4">{{coun_unreplied_issueList.length}}</ion-col>
         </ion-row>
+
+        <br>
+        <ion-button (click)="gotoIssue()" expand="block" fill="clear" shape="round">
+          Issue Section
+        </ion-button>
 
     </div>
 

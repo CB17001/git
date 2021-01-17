@@ -60,7 +60,7 @@
       <div class="panel">
         <ion-row class="header-row">
           <ion-col size="3">
-            <p style="font-size:90%;">Email</p>
+            <p style="font-size:90%;">Student Email</p>
           </ion-col>
       
           <ion-col size="3">
@@ -99,14 +99,14 @@
       <div class="panel">
         <ion-row class="header-row">
           <ion-col size="3">
-            Email
+            Student Email
           </ion-col>
       
-          <ion-col size="2">
+          <ion-col size="3">
             Counsellor Name
           </ion-col>
       
-          <ion-col size="4">
+          <ion-col size="3">
             Date
           </ion-col>
       
@@ -116,11 +116,11 @@
         </ion-row>
       
         <ion-row *ngFor="let row of faculty_unapprove_appList" class="data-row">
-          <ion-col size="4">
+          <ion-col size="3">
             {{row.Email}}
           </ion-col>
       
-          <ion-col size="2">
+          <ion-col size="3">
             {{row.counName}}
           </ion-col>
       
@@ -137,15 +137,15 @@
       <br><button class="accordion">Attended Appointment</button>
       <div class="panel">
         <ion-row class="header-row">
-          <ion-col size="4">
-            Email
+          <ion-col size="3">
+            Student Email
           </ion-col>
       
-          <ion-col size="2">
+          <ion-col size="3">
             Counsellor Name
           </ion-col>
       
-          <ion-col size="4">
+          <ion-col size="3">
             Date
           </ion-col>
       
@@ -155,15 +155,15 @@
         </ion-row>
       
         <ion-row *ngFor="let row of faculty_attend_appList" class="data-row">
-          <ion-col size="4">
+          <ion-col size="3">
             {{row.Email}}
           </ion-col>
       
-          <ion-col size="2">
+          <ion-col size="3">
             {{row.counName}}
           </ion-col>
       
-          <ion-col size="4">
+          <ion-col size="3">
             {{row.Date | date:'fullDate'}}
           </ion-col>
       

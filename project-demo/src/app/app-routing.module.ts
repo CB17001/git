@@ -45,91 +45,135 @@ const routes: Routes = [
   },
   {
     path: 'stud-view-appointment',
-    loadChildren: () => import('./page/appointment/stud-view-appointment/stud-view-appointment.module').then( m => m.StudViewAppointmentPageModule)
+    loadChildren: () => import('./page/appointment/stud-view-appointment/stud-view-appointment.module').then( m => m.StudViewAppointmentPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-attendance-std',
-    loadChildren: () => import('./page/attendance/view-attendance-std/view-attendance-std.module').then( m => m.ViewAttendanceStdPageModule)
+    loadChildren: () => import('./page/attendance/view-attendance-std/view-attendance-std.module').then( m => m.ViewAttendanceStdPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-issue-std',
-    loadChildren: () => import('./page/issue/view-issue-std/view-issue-std.module').then( m => m.ViewIssueStdPageModule)
+    loadChildren: () => import('./page/issue/view-issue-std/view-issue-std.module').then( m => m.ViewIssueStdPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'create-issue-std',
-    loadChildren: () => import('./page/issue/create-issue-std/create-issue-std.module').then( m => m.CreateIssueStdPageModule)
+    loadChildren: () => import('./page/issue/create-issue-std/create-issue-std.module').then( m => m.CreateIssueStdPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'counsellor-account',
-    loadChildren: () => import('./page/account/counsellor-account/counsellor-account.module').then( m => m.CounsellorAccountPageModule)
+    loadChildren: () => import('./page/account/counsellor-account/counsellor-account.module').then( m => m.CounsellorAccountPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'counsellor-home',
-    loadChildren: () => import('./mainpage/counsellor-home/counsellor-home.module').then( m => m.CounsellorHomePageModule)
+    loadChildren: () => import('./mainpage/counsellor-home/counsellor-home.module').then( m => m.CounsellorHomePageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-appointment-counsellor',
-    loadChildren: () => import('./page/appointment/view-appointment-counsellor/view-appointment-counsellor.module').then( m => m.ViewAppointmentCounsellorPageModule)
+    loadChildren: () => import('./page/appointment/view-appointment-counsellor/view-appointment-counsellor.module').then( m => m.ViewAppointmentCounsellorPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-issue-counsellor',
-    loadChildren: () => import('./page/issue/view-issue-counsellor/view-issue-counsellor.module').then( m => m.ViewIssueCounsellorPageModule)
+    loadChildren: () => import('./page/issue/view-issue-counsellor/view-issue-counsellor.module').then( m => m.ViewIssueCounsellorPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'approve-appointment-counsellor',
-    loadChildren: () => import('./page/appointment/approve-appointment-counsellor/approve-appointment-counsellor.module').then( m => m.ApproveAppointmentCounsellorPageModule)
+    loadChildren: () => import('./page/appointment/approve-appointment-counsellor/approve-appointment-counsellor.module').then( m => m.ApproveAppointmentCounsellorPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-attendance-coun',
-    loadChildren: () => import('./page/attendance/view-attendance-coun/view-attendance-coun.module').then( m => m.ViewAttendanceCounPageModule)
+    loadChildren: () => import('./page/attendance/view-attendance-coun/view-attendance-coun.module').then( m => m.ViewAttendanceCounPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-report-coun',
-    loadChildren: () => import('./page/report/view-report-coun/view-report-coun.module').then( m => m.ViewReportCounPageModule)
+    loadChildren: () => import('./page/report/view-report-coun/view-report-coun.module').then( m => m.ViewReportCounPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-report-fac',
-    loadChildren: () => import('./page/report/view-report-fac/view-report-fac.module').then( m => m.ViewReportFacPageModule)
+    loadChildren: () => import('./page/report/view-report-fac/view-report-fac.module').then( m => m.ViewReportFacPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'view-fac-report-coun',
-    loadChildren: () => import('./page/report/view-fac-report-coun/view-fac-report-coun.module').then( m => m.ViewFacReportCounPageModule)
+    loadChildren: () => import('./page/report/view-fac-report-coun/view-fac-report-coun.module').then( m => m.ViewFacReportCounPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'create-appointment-counsellor',
-    loadChildren: () => import('./page/appointment/create-appointment-counsellor/create-appointment-counsellor.module').then( m => m.CreateAppointmentCounsellorPageModule)
+    loadChildren: () => import('./page/appointment/create-appointment-counsellor/create-appointment-counsellor.module').then( m => m.CreateAppointmentCounsellorPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'faculty-home',
-    loadChildren: () => import('./mainpage/faculty-home/faculty-home.module').then( m => m.FacultyHomePageModule)
+    loadChildren: () => import('./mainpage/faculty-home/faculty-home.module').then( m => m.FacultyHomePageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'faculty-account',
-    loadChildren: () => import('./page/account/faculty-account/faculty-account.module').then( m => m.FacultyAccountPageModule)
+    loadChildren: () => import('./page/account/faculty-account/faculty-account.module').then( m => m.FacultyAccountPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'student-info',
-    loadChildren: () => import('./page/student-info/student-info.module').then( m => m.StudentInfoPageModule)
+    loadChildren: () => import('./page/student-info/student-info.module').then( m => m.StudentInfoPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'test',
-    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'coun-student-info',
-    loadChildren: () => import('./page/info/coun-student-info/coun-student-info.module').then( m => m.CounStudentInfoPageModule)
+    loadChildren: () => import('./page/info/coun-student-info/coun-student-info.module').then( m => m.CounStudentInfoPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'stud-faculty-info',
-    loadChildren: () => import('./page/info/stud-faculty-info/stud-faculty-info.module').then( m => m.StudFacultyInfoPageModule)
+    loadChildren: () => import('./page/info/stud-faculty-info/stud-faculty-info.module').then( m => m.StudFacultyInfoPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'stud-counsellor-info',
-    loadChildren: () => import('./page/info/stud-counsellor-info/stud-counsellor-info.module').then( m => m.StudCounsellorInfoPageModule)
+    loadChildren: () => import('./page/info/stud-counsellor-info/stud-counsellor-info.module').then( m => m.StudCounsellorInfoPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'student-directory',
-    loadChildren: () => import('./page/directory/student-directory/student-directory.module').then( m => m.StudentDirectoryPageModule)
+    loadChildren: () => import('./page/directory/student-directory/student-directory.module').then( m => m.StudentDirectoryPageModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
 ];
 

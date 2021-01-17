@@ -184,6 +184,14 @@ export class ViewReportCounPage implements OnInit {
   CheckFaculty(){
     this.router.navigate(['/view-fac-report-coun'])
   }
+
+  gotoAppointment() {
+    this.router.navigate(['/view-appointment-counsellor'])
+  }
+
+  gotoIssue() {
+    this.router.navigate(['/view-issue-counsellor'])
+  }
   
   ionViewWillEnter() {
     this.menu.enable(true, 'counsellor-menu');
