@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, MenuController, ToastController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-view-report-coun',
@@ -13,7 +14,13 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class ViewReportCounPage implements OnInit {
 
+  @ViewChild('doughnutCanvas') private doughnutCanvas: ElementRef;
+  @ViewChild('doughnutCanvas2') private doughnutCanvas2: ElementRef;
+  doughnutChart: any;
+
   email: string;
+
+  a: number;
 
   coun_approve_appList = [];
   coun_not_approve_appList = [];
@@ -104,7 +111,8 @@ export class ViewReportCounPage implements OnInit {
     public router: Router,
     private menu: MenuController,
     public alertController: AlertController,
-    public fb: FormBuilder,) { }
+    public fb: FormBuilder,
+    ) { }
 
   async ngOnInit() {
     this.checkForm = this.fb.group({
@@ -114,6 +122,8 @@ export class ViewReportCounPage implements OnInit {
 
     var user = await this.ngFireAuth.currentUser;
     this.email = user.email;
+
+    
   }
   
   CheckRecord(){
@@ -130,6 +140,7 @@ export class ViewReportCounPage implements OnInit {
         };
       })
       console.log(this.coun_attend_appList);
+      
     });
 
     this.firebaseService.read_coun_approve_app(this.email,1,0).subscribe(data => {
@@ -145,6 +156,7 @@ export class ViewReportCounPage implements OnInit {
         };
       })
       console.log(this.coun_approve_appList);
+
     });
 
     this.firebaseService.read_replied_coun_issue(this.email,0).subscribe(data => {
@@ -177,6 +189,60 @@ export class ViewReportCounPage implements OnInit {
         };
       })
       console.log(this.coun_unreplied_issueList);
+    });
+
+    var a = this.coun_attend_appList.length;
+    var b = this.coun_approve_appList.length;
+    var c = this.coun_approve_appList.length;
+
+    console.log(a);
+    console.log(b);
+    console.log(this.coun_approve_appList.length);
+
+    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+      
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'Approved', 'Incompleted'],
+        datasets: [{
+          label: '# of Appoointments',
+          data: [4, 2, 2],
+          backgroundColor: [
+            //'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            //'rgba(75, 192, 192, 0.2)'
+          ],
+          hoverBackgroundColor: [
+            //'#FFCE56',
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56',
+            //'#FF6384'
+          ]
+        }]
+      }
+    });
+
+    this.doughnutChart = new Chart(this.doughnutCanvas2.nativeElement, {
+      
+      type: 'doughnut',
+      data: {
+        labels: ['Replied', 'Not Replied'],
+        datasets: [{
+          label: '# of Issues',
+          data: [1, 1],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+          ],
+          hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+          ]
+        }]
+      }
     });
     
   }

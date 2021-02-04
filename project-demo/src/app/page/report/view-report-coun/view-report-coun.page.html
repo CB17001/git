@@ -56,6 +56,15 @@
           <ion-col size="4">{{coun_approve_appList.length}}</ion-col>
         </ion-row>
 
+        <ion-card>
+          <ion-card-header>
+            Appointment Chart
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #doughnutCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+          </ion-card-content>
+        </ion-card>
+
         <br>
         <ion-button (click)="gotoAppointment()" expand="block" fill="clear" shape="round">
           Appointment Section
@@ -77,6 +86,15 @@
 
           <ion-col size="4">{{coun_unreplied_issueList.length}}</ion-col>
         </ion-row>
+
+        <ion-card>
+          <ion-card-header>
+            Issue Chart
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #doughnutCanvas2 style="position: relative; height:20vh; width:40vw"></canvas>
+          </ion-card-content>
+        </ion-card>
 
         <br>
         <ion-button (click)="gotoIssue()" expand="block" fill="clear" shape="round">

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, MenuController, ToastController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-view-fac-report-coun',
@@ -12,6 +13,8 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./view-fac-report-coun.page.scss'],
 })
 export class ViewFacReportCounPage implements OnInit {
+  @ViewChild('doughnutCanvas') private doughnutCanvas: ElementRef;
+  doughnutChart: any;
 
   email: string;
 
@@ -188,6 +191,32 @@ export class ViewFacReportCounPage implements OnInit {
           faculty: e.payload.doc.data()['faculty'],
         };
       })
+    });
+
+    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+      
+      type: 'doughnut',
+      data: {
+        labels: ['Attend', 'Approved', 'Unapproved', 'Absent'],
+        datasets: [{
+          label: '# of Appointments',
+          data: [2, 1, 1, 0],
+          backgroundColor: [
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            //'rgba(75, 192, 192, 0.2)'
+          ],
+          hoverBackgroundColor: [
+            '#FFCE56',
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56',
+            //'#FF6384'
+          ]
+        }]
+      }
     });
   }
 
